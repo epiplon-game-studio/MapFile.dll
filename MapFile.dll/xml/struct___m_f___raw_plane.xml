@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="struct___m_f___raw_plane" kind="struct" language="C++" prot="public">
+    <compoundname>_MF_RawPlane</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct___m_f___raw_plane_1aba4af2c4f0ea7c3740335e46cbd4883e" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 _MF_RawPlane::a</definition>
+        <argsstring></argsstring>
+        <name>a</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MapFileStructs.h" line="7" column="11" bodyfile="MapFileStructs.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___m_f___raw_plane_1ab3437b45ebbcff07e7834806108db2a5" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 _MF_RawPlane::b</definition>
+        <argsstring></argsstring>
+        <name>b</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MapFileStructs.h" line="8" column="11" bodyfile="MapFileStructs.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___m_f___raw_plane_1a26e31c4b4c55a89150246cf3f4f9625d" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 _MF_RawPlane::c</definition>
+        <argsstring></argsstring>
+        <name>c</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MapFileStructs.h" line="9" column="11" bodyfile="MapFileStructs.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___m_f___raw_plane_1a69c03639ba150e0a3bbc4c99d3214708" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* _MF_RawPlane::textureName</definition>
+        <argsstring></argsstring>
+        <name>textureName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MapFileStructs.h" line="11" column="6" bodyfile="MapFileStructs.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___m_f___raw_plane_1a8dc1b59bd411fb056b3cff2a98e1be42" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float _MF_RawPlane::offsetX</definition>
+        <argsstring></argsstring>
+        <name>offsetX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MapFileStructs.h" line="12" column="7" bodyfile="MapFileStructs.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___m_f___raw_plane_1aa1f07276da1886ec9d1a1705dd674b0d" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float _MF_RawPlane::offsetY</definition>
+        <argsstring></argsstring>
+        <name>offsetY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MapFileStructs.h" line="13" column="7" bodyfile="MapFileStructs.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___m_f___raw_plane_1a8ec2e334a807525a34a368fbda341298" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float _MF_RawPlane::rotation</definition>
+        <argsstring></argsstring>
+        <name>rotation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MapFileStructs.h" line="15" column="7" bodyfile="MapFileStructs.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___m_f___raw_plane_1a58364a8a3830ed6c8672d7345152be76" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float _MF_RawPlane::scaleX</definition>
+        <argsstring></argsstring>
+        <name>scaleX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MapFileStructs.h" line="17" column="7" bodyfile="MapFileStructs.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___m_f___raw_plane_1a353ee46703755ee2b8a66e0a18c7d6bb" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float _MF_RawPlane::scaleY</definition>
+        <argsstring></argsstring>
+        <name>scaleY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MapFileStructs.h" line="18" column="7" bodyfile="MapFileStructs.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="MapFileStructs.h" line="5" column="1" bodyfile="MapFileStructs.h" bodystart="6" bodyend="19"/>
+    <listofallmembers>
+      <member refid="struct___m_f___raw_plane_1aba4af2c4f0ea7c3740335e46cbd4883e" prot="public" virt="non-virtual"><scope>_MF_RawPlane</scope><name>a</name></member>
+      <member refid="struct___m_f___raw_plane_1ab3437b45ebbcff07e7834806108db2a5" prot="public" virt="non-virtual"><scope>_MF_RawPlane</scope><name>b</name></member>
+      <member refid="struct___m_f___raw_plane_1a26e31c4b4c55a89150246cf3f4f9625d" prot="public" virt="non-virtual"><scope>_MF_RawPlane</scope><name>c</name></member>
+      <member refid="struct___m_f___raw_plane_1a8dc1b59bd411fb056b3cff2a98e1be42" prot="public" virt="non-virtual"><scope>_MF_RawPlane</scope><name>offsetX</name></member>
+      <member refid="struct___m_f___raw_plane_1aa1f07276da1886ec9d1a1705dd674b0d" prot="public" virt="non-virtual"><scope>_MF_RawPlane</scope><name>offsetY</name></member>
+      <member refid="struct___m_f___raw_plane_1a8ec2e334a807525a34a368fbda341298" prot="public" virt="non-virtual"><scope>_MF_RawPlane</scope><name>rotation</name></member>
+      <member refid="struct___m_f___raw_plane_1a58364a8a3830ed6c8672d7345152be76" prot="public" virt="non-virtual"><scope>_MF_RawPlane</scope><name>scaleX</name></member>
+      <member refid="struct___m_f___raw_plane_1a353ee46703755ee2b8a66e0a18c7d6bb" prot="public" virt="non-virtual"><scope>_MF_RawPlane</scope><name>scaleY</name></member>
+      <member refid="struct___m_f___raw_plane_1a69c03639ba150e0a3bbc4c99d3214708" prot="public" virt="non-virtual"><scope>_MF_RawPlane</scope><name>textureName</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

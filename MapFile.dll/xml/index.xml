@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.1" xml:lang="en-US">
+  <compound refid="struct___m_f___brush" kind="struct"><name>_MF_Brush</name>
+    <member refid="struct___m_f___brush_1adaca8af1fa3fb5b347f004c8317cd2f7" kind="variable"><name>planes</name></member>
+  </compound>
+  <compound refid="struct___m_f___entity" kind="struct"><name>_MF_Entity</name>
+    <member refid="struct___m_f___entity_1a71c3270d8fbb2349683fe77100f6f384" kind="variable"><name>classname</name></member>
+    <member refid="struct___m_f___entity_1a5ff3c8a879762a13fb340b47cbd7e619" kind="variable"><name>origin</name></member>
+    <member refid="struct___m_f___entity_1a90fd33d076b5690b49c70a97466fe489" kind="variable"><name>totalProperties</name></member>
+    <member refid="struct___m_f___entity_1acbe8ebe6693c4046f7e111b2d8c4f78a" kind="variable"><name>properties</name></member>
+    <member refid="struct___m_f___entity_1a13800b8076cbb11869f711aa9967f5f3" kind="variable"><name>brushes</name></member>
+  </compound>
+  <compound refid="struct___m_f___entity_property" kind="struct"><name>_MF_EntityProperty</name>
+    <member refid="struct___m_f___entity_property_1aeb4fbb9ced8244b7a36c62e127af6af9" kind="variable"><name>key</name></member>
+    <member refid="struct___m_f___entity_property_1a5faec844917c1c61c76993c01606e5d6" kind="variable"><name>value</name></member>
+  </compound>
+  <compound refid="struct___m_f___raw_plane" kind="struct"><name>_MF_RawPlane</name>
+    <member refid="struct___m_f___raw_plane_1aba4af2c4f0ea7c3740335e46cbd4883e" kind="variable"><name>a</name></member>
+    <member refid="struct___m_f___raw_plane_1ab3437b45ebbcff07e7834806108db2a5" kind="variable"><name>b</name></member>
+    <member refid="struct___m_f___raw_plane_1a26e31c4b4c55a89150246cf3f4f9625d" kind="variable"><name>c</name></member>
+    <member refid="struct___m_f___raw_plane_1a69c03639ba150e0a3bbc4c99d3214708" kind="variable"><name>textureName</name></member>
+    <member refid="struct___m_f___raw_plane_1a8dc1b59bd411fb056b3cff2a98e1be42" kind="variable"><name>offsetX</name></member>
+    <member refid="struct___m_f___raw_plane_1aa1f07276da1886ec9d1a1705dd674b0d" kind="variable"><name>offsetY</name></member>
+    <member refid="struct___m_f___raw_plane_1a8ec2e334a807525a34a368fbda341298" kind="variable"><name>rotation</name></member>
+    <member refid="struct___m_f___raw_plane_1a58364a8a3830ed6c8672d7345152be76" kind="variable"><name>scaleX</name></member>
+    <member refid="struct___m_f___raw_plane_1a353ee46703755ee2b8a66e0a18c7d6bb" kind="variable"><name>scaleY</name></member>
+  </compound>
+  <compound refid="dllmain_8cpp" kind="file"><name>dllmain.cpp</name>
+    <member refid="dllmain_8cpp_1a26e64fb39b69bcd9d1274d279f1561b9" kind="function"><name>DllMain</name></member>
+  </compound>
+  <compound refid="_file_reading_8cpp" kind="file"><name>FileReading.cpp</name>
+  </compound>
+  <compound refid="_file_reading_8h" kind="file"><name>FileReading.h</name>
+    <member refid="_file_reading_8h_1ac7bef5d85e3dcd73eef56ad39ffc84a9" kind="define"><name>WIN32_LEAN_AND_MEAN</name></member>
+  </compound>
+  <compound refid="framework_8h" kind="file"><name>framework.h</name>
+    <member refid="framework_8h_1ac7bef5d85e3dcd73eef56ad39ffc84a9" kind="define"><name>WIN32_LEAN_AND_MEAN</name></member>
+  </compound>
+  <compound refid="_map_file_structs_8h" kind="file"><name>MapFileStructs.h</name>
+    <member refid="_map_file_structs_8h_1a44b185c9f10851a4de14aa34b71c0b44" kind="typedef"><name>MF_RawPlane</name></member>
+    <member refid="_map_file_structs_8h_1a995297f4434a51845d2cd77daed900e9" kind="typedef"><name>MF_Brush</name></member>
+    <member refid="_map_file_structs_8h_1a0cc29e869e806d7674368e7829c2b69a" kind="typedef"><name>MF_EntityProperty</name></member>
+  </compound>
+  <compound refid="pch_8cpp" kind="file"><name>pch.cpp</name>
+  </compound>
+  <compound refid="pch_8h" kind="file"><name>pch.h</name>
+  </compound>
+</doxygenindex>
