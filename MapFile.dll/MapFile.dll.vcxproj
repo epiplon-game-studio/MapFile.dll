@@ -140,7 +140,8 @@
       <EnableUAC>false</EnableUAC>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(ProjectDir)Build\$(Platform)\$(Configuration)\MapFile.dll $(SolutionDir)MapFile.dll.Test\Build\$(Platform)\$(Configuration)\MapFile.dll</Command>
+      <Command>copy $(ProjectDir)Build\$(Platform)\$(Configuration)\MapFile.dll $(SolutionDir)MapFile.dll.Test\Build\$(Platform)\$(Configuration)\MapFile.dll
+doxygen</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
