@@ -26,5 +26,42 @@ namespace MapFiledllTest
 		{
 			Assert::AreEqual(MF_LOAD_MEMORY_ERROR, MF_LoadMap("Sample\\Empty.map", NULL));
 		}
+
+		/* MF_CountEntities */
+		TEST_METHOD(MF_CountEntities_NULL_Data)
+		{
+			Assert::AreEqual(-1, _MF_CountEntities(NULL, NULL));
+		}
+
+		TEST_METHOD(MF_CountEntities_NULL_brushstart)
+		{
+			Assert::AreEqual(-1, _MF_CountEntities("{}", NULL));
+		}
+
+		TEST_METHOD(MF_CountEntities_Dangling_Bracket)
+		{
+			char* brushStart;
+			Assert::AreEqual(-1, _MF_CountEntities("{}\n{", &brushStart));
+		}
+
+		TEST_METHOD(MF_CountEntities_Headless_Bracket)
+		{
+			char* brushStart;
+			Assert::AreEqual(-1, _MF_CountEntities("}\n}", &brushStart));
+		}
+
+		TEST_METHOD(MF_CountEntities_Embedded_Brushes)
+		{
+			char* brushStart;
+			const char* text =	"//TestComment\n"
+								"{\n"
+								"\"classname\": \"worldspawn\"\n"
+								"{}\n"
+								"}\n"
+								"{}\n"
+								"{}";
+			Assert::AreEqual(3, _MF_CountEntities("//TestComment\n{\n\"classname\":\"worldspawn\"\n{}\n}{}{}", &brushStart));
+			Assert::AreEqual(text + 15, brushStart);
+		}
 	};
 }
