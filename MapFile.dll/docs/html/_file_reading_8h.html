@@ -85,6 +85,7 @@ $(document).ready(function(){initNavTree('_file_reading_8h.html',''); initResiza
 
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
@@ -96,17 +97,38 @@ $(document).ready(function(){initNavTree('_file_reading_8h.html',''); initResiza
 </div>
 <p><a href="_file_reading_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a9096e18785f32951d01c737cced9320a"><td class="memItemLeft" align="right" valign="top"><a id="a9096e18785f32951d01c737cced9320a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MF_COUNT_ENTITIES_NULL_OR_EMPTY_TEXT</b>&#160;&#160;&#160;(-1)</td></tr>
+<tr class="separator:a9096e18785f32951d01c737cced9320a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd90c88299d5796acecb5a56385ea8a1"><td class="memItemLeft" align="right" valign="top"><a id="acd90c88299d5796acecb5a56385ea8a1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MF_COUNT_ENTITIES_NULL_BRUSHSTART</b>&#160;&#160;&#160;(-2)</td></tr>
+<tr class="separator:acd90c88299d5796acecb5a56385ea8a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4871f15ee2754d8e96358487ae4d2e0b"><td class="memItemLeft" align="right" valign="top"><a id="a4871f15ee2754d8e96358487ae4d2e0b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MF_COUNT_ENTITIES_DANGLING_OPEN_BRACKET</b>&#160;&#160;&#160;(-3)</td></tr>
+<tr class="separator:a4871f15ee2754d8e96358487ae4d2e0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd2efc338253ba4353be94a6222a509f"><td class="memItemLeft" align="right" valign="top"><a id="abd2efc338253ba4353be94a6222a509f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MF_COUNT_ENTITIES_DANGLING_CLOSE_BRACKET</b>&#160;&#160;&#160;(-4)</td></tr>
+<tr class="separator:abd2efc338253ba4353be94a6222a509f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a39671675c7630ce9da5d4c074e080602"><td class="memItemLeft" align="right" valign="top"><a id="a39671675c7630ce9da5d4c074e080602"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>MF_LoadStatus</b> { <b>MF_LOAD_OK</b>
+<tr class="memitem:a39671675c7630ce9da5d4c074e080602"><td class="memItemLeft" align="right" valign="top"><a id="a39671675c7630ce9da5d4c074e080602"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>MF_LoadStatus</b> { <br />
+&#160;&#160;<b>MF_LOAD_OK</b>
 , <b>MF_LOAD_FILE_NOT_FOUND</b>
+, <b>MF_LOAD_PERMISSIONS</b>
 , <b>MF_LOAD_MEMORY_ERROR</b>
-, <b>MF_LOAD_PARSE_ERROR</b>
+, <br />
+&#160;&#160;<b>MF_LOAD_PARSE_ERROR</b>
+, <b>MF_LOAD_UNKNOWN_ERROR</b>
+<br />
  }</td></tr>
 <tr class="separator:a39671675c7630ce9da5d4c074e080602"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3d85b89f431030f404bc5cc0cb00d5f"><td class="memItemLeft" align="right" valign="top"><a id="ab3d85b89f431030f404bc5cc0cb00d5f"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>MF_ParseStatus</b> { <b>MF_PARSE_OK</b>
 , <b>MF_PARSE_SYNTAX_ERROR</b>
 , <b>MF_PARSE_MEMORY_ERROR</b>
+, <b>MF_PARSE_UNKNOWN_ERROR</b>
  }</td></tr>
 <tr class="separator:ab3d85b89f431030f404bc5cc0cb00d5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -116,18 +138,20 @@ Functions</h2></td></tr>
 <tr class="separator:a615bcd8641e46a6af20a168e0ea45b2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79037aa71562a82c8d2105e09e5a5738"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#a79037aa71562a82c8d2105e09e5a5738">_MF_CountEntities</a> (const char *text, char **brushStart)</td></tr>
 <tr class="separator:a79037aa71562a82c8d2105e09e5a5738"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98fa233997fd2cac35a3ddd9e409f1c6"><td class="memItemLeft" align="right" valign="top">MF_ParseStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#a98fa233997fd2cac35a3ddd9e409f1c6">_MF_StartParseGeneralEntity</a> (const char *text, <a class="el" href="struct___m_f___entity.html">MF_Entity</a> *entity)</td></tr>
-<tr class="separator:a98fa233997fd2cac35a3ddd9e409f1c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4580e327be3f0c82d6ad7cac72d89ddf"><td class="memItemLeft" align="right" valign="top">MF_ParseStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#a4580e327be3f0c82d6ad7cac72d89ddf">_MF_StartParseGeneralEntity</a> (const char *text, <a class="el" href="struct___m_f___entity.html">MF_Entity</a> *entity, char **endEntity)</td></tr>
+<tr class="separator:a4580e327be3f0c82d6ad7cac72d89ddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8cf919e6e6e4334569d246d0f5983f3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#ad8cf919e6e6e4334569d246d0f5983f3">_MF_CountBrushes</a> (const char *text)</td></tr>
 <tr class="separator:ad8cf919e6e6e4334569d246d0f5983f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6d578f97452b224bf76454fcaa9e8fd"><td class="memItemLeft" align="right" valign="top">MF_ParseStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#ad6d578f97452b224bf76454fcaa9e8fd">_MF_StartParseEntity</a> (const char *text, <a class="el" href="struct___m_f___entity.html">MF_Entity</a> *entity)</td></tr>
-<tr class="separator:ad6d578f97452b224bf76454fcaa9e8fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38b70c4ab200f993cd9259d0787ed1e3"><td class="memItemLeft" align="right" valign="top">MF_ParseStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#a38b70c4ab200f993cd9259d0787ed1e3">_MF_StartParseBrush</a> (const char *text, <a class="el" href="struct___m_f___entity.html">MF_Entity</a> *entity)</td></tr>
-<tr class="separator:a38b70c4ab200f993cd9259d0787ed1e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab00fec2e35204fc0b0860a72c5f0d19b"><td class="memItemLeft" align="right" valign="top">MF_ParseStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#ab00fec2e35204fc0b0860a72c5f0d19b">_MF_StartParseEntity</a> (const char *text, <a class="el" href="struct___m_f___entity.html">MF_Entity</a> *entity, char **endEntity)</td></tr>
+<tr class="separator:ab00fec2e35204fc0b0860a72c5f0d19b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad26517c14d4dd9cccf2af193386f9435"><td class="memItemLeft" align="right" valign="top">MF_ParseStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#ad26517c14d4dd9cccf2af193386f9435">_MF_StartParseBrush</a> (const char *text, <a class="el" href="struct___m_f___entity.html">MF_Entity</a> *entity, char **endEntity)</td></tr>
+<tr class="separator:ad26517c14d4dd9cccf2af193386f9435"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5038b09170669459e7d3c90beb74f1d3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#a5038b09170669459e7d3c90beb74f1d3">_MF_CountProperties</a> (const char *text)</td></tr>
 <tr class="separator:a5038b09170669459e7d3c90beb74f1d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8f64a4d23a7d664e842b0fea5c03dfb"><td class="memItemLeft" align="right" valign="top">MF_ParseStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#ab8f64a4d23a7d664e842b0fea5c03dfb">_MF_StartParseProperty</a> (const char *text, <a class="el" href="struct___m_f___entity_property.html">MF_EntityProperty</a> *property)</td></tr>
-<tr class="separator:ab8f64a4d23a7d664e842b0fea5c03dfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a203a8e4609c967e19317456b7f5938ca"><td class="memItemLeft" align="right" valign="top">MF_ParseStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#a203a8e4609c967e19317456b7f5938ca">_MF_StartParseProperty</a> (const char *text, <a class="el" href="struct___m_f___entity_property.html">MF_EntityProperty</a> *property, char **endProperty)</td></tr>
+<tr class="separator:a203a8e4609c967e19317456b7f5938ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46ca33dee24b05bac11c06ea76a290a0"><td class="memItemLeft" align="right" valign="top">MF_LoadStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#a46ca33dee24b05bac11c06ea76a290a0">_MF_ReadFile</a> (char *mapPath, char **data, size_t *size)</td></tr>
+<tr class="separator:a46ca33dee24b05bac11c06ea76a290a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>File reading and map parsing operations </p>
@@ -221,8 +245,52 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a38b70c4ab200f993cd9259d0787ed1e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38b70c4ab200f993cd9259d0787ed1e3">&#9670;&nbsp;</a></span>_MF_StartParseBrush()</h2>
+<a id="a46ca33dee24b05bac11c06ea76a290a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46ca33dee24b05bac11c06ea76a290a0">&#9670;&nbsp;</a></span>_MF_ReadFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MF_LoadStatus _MF_ReadFile </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>mapPath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Reads a file into the provided data pointer. Puts the size of the string into the size variable. This function allocates memory on the heap</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mapPath</td><td>The path of the file </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td>A pointer to the string where the file text will go </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">size</td><td>A pointer to the size_t variable which will take the value of the size of the string.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An enum representing the completion status of the operation. MF_LOAD_OK on success, all others on failure. </dd></dl>
+
+</div>
+</div>
+<a id="ad26517c14d4dd9cccf2af193386f9435"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad26517c14d4dd9cccf2af193386f9435">&#9670;&nbsp;</a></span>_MF_StartParseBrush()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -237,7 +305,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="struct___m_f___entity.html">MF_Entity</a> *&#160;</td>
-          <td class="paramname"><em>entity</em>&#160;</td>
+          <td class="paramname"><em>entity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>endEntity</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -250,7 +324,8 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">text</td><td>A pointer to the opening bracket of the brush object definition </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">entity</td><td>A pointer to the entity struct which will contain the brush data</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">entity</td><td>A pointer to the entity struct which will contain the brush data </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">endEntity</td><td>A pointer to one character after the ending bracket of the entity definition</td></tr>
   </table>
   </dd>
 </dl>
@@ -258,8 +333,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad6d578f97452b224bf76454fcaa9e8fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6d578f97452b224bf76454fcaa9e8fd">&#9670;&nbsp;</a></span>_MF_StartParseEntity()</h2>
+<a id="ab00fec2e35204fc0b0860a72c5f0d19b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab00fec2e35204fc0b0860a72c5f0d19b">&#9670;&nbsp;</a></span>_MF_StartParseEntity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -274,7 +349,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="struct___m_f___entity.html">MF_Entity</a> *&#160;</td>
-          <td class="paramname"><em>entity</em>&#160;</td>
+          <td class="paramname"><em>entity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>endEntity</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -287,7 +368,8 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">text</td><td>A pointer to the opening bracket of the detail object definition </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">entity</td><td>A pointer to the entity struct which will contain the entity data</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">entity</td><td>A pointer to the entity struct which will contain the entity data </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">endEntity</td><td>A pointer to one character after the ending bracket of the entity definition</td></tr>
   </table>
   </dd>
 </dl>
@@ -295,8 +377,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a98fa233997fd2cac35a3ddd9e409f1c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a98fa233997fd2cac35a3ddd9e409f1c6">&#9670;&nbsp;</a></span>_MF_StartParseGeneralEntity()</h2>
+<a id="a4580e327be3f0c82d6ad7cac72d89ddf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4580e327be3f0c82d6ad7cac72d89ddf">&#9670;&nbsp;</a></span>_MF_StartParseGeneralEntity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -311,7 +393,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="struct___m_f___entity.html">MF_Entity</a> *&#160;</td>
-          <td class="paramname"><em>entity</em>&#160;</td>
+          <td class="paramname"><em>entity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>endEntity</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -324,7 +412,8 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">text</td><td>A pointer to the beginning bracket of the entity definition </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">entity</td><td>A pointer to a struct which will contain the entity information</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">entity</td><td>A pointer to a struct which will contain the entity information </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">endEntity</td><td>A pointer to one character after the end bracket of the entity definition</td></tr>
   </table>
   </dd>
 </dl>
@@ -332,8 +421,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ab8f64a4d23a7d664e842b0fea5c03dfb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8f64a4d23a7d664e842b0fea5c03dfb">&#9670;&nbsp;</a></span>_MF_StartParseProperty()</h2>
+<a id="a203a8e4609c967e19317456b7f5938ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a203a8e4609c967e19317456b7f5938ca">&#9670;&nbsp;</a></span>_MF_StartParseProperty()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -348,7 +437,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="struct___m_f___entity_property.html">MF_EntityProperty</a> *&#160;</td>
-          <td class="paramname"><em>property</em>&#160;</td>
+          <td class="paramname"><em>property</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>endProperty</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -361,7 +456,8 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">text</td><td>A pointer to the beginning of the property definition (beginning of the line) </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">property</td><td>A pointer to the struct which will contain the property data</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">property</td><td>A pointer to the struct which will contain the property data </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">endProperty</td><td>A pointer to one character after the end of the property definition</td></tr>
   </table>
   </dd>
 </dl>

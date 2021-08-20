@@ -17,6 +17,10 @@ static std::wstring Microsoft::VisualStudio::CppUnitTestFramework::ToString<MF_L
 		return L"MF_LOAD_MEMORY_ERROR";
 	case MF_LOAD_PARSE_ERROR:
 		return L"MF_LOAD_PARSE_ERROR";
+	case MF_LOAD_PERMISSIONS:
+		return L"MF_LOAD_PERMISSIONS";
+	case MF_LOAD_UNKNOWN_ERROR:
+		return L"MF_LOAD_UNKNOWN_ERROR";
 	default:
 		return L"MF_UNKNOWN_LOAD_STATUS";
 	}
