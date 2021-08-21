@@ -8,10 +8,10 @@
 #include "MapFileStructs.h"
 
 // #defined magic numbers for count functions
-#define MF_COUNT_ENTITIES_NULL_OR_EMPTY_TEXT (-1)
-#define MF_COUNT_ENTITIES_NULL_BRUSHSTART (-2)
-#define MF_COUNT_ENTITIES_DANGLING_OPEN_BRACKET (-3)
-#define MF_COUNT_ENTITIES_DANGLING_CLOSE_BRACKET (-4)
+#define MF_COUNT_NULL_OR_EMPTY_TEXT (-1)
+#define MF_COUNT_NULL_BRUSHSTART (-2)
+#define MF_COUNT_DANGLING_OPEN_BRACKET (-3)
+#define MF_COUNT_DANGLING_CLOSE_BRACKET (-4)
 
 enum MF_LoadStatus
 {
@@ -33,6 +33,7 @@ enum MF_ParseStatus
 
 extern "C"
 {
+
 /**
  * Loads a map into a set of headers representing the raw data in the map.
  * This creates a set of planes and entity's with properties, but does not
@@ -54,14 +55,11 @@ DLL MF_LoadStatus MF_LoadMap(_In_ char* mapPath, _Out_ MF_Map* map);
  * entities.
  * 
  * @param[in]	text		A pointer to the start of the map file text, null terminated
- * @param[out]	brushStart	A pointer to a pointer representing the start of the brush
- *							(worldspawn) entity, for future lookup when counting the
- *							total number of brushes.
  * 
  * @return					The total number of entities ( >0 ) on success, -1 on failure.
  */
 _Success_(return > 0)
-DLL int _MF_CountEntities(_In_ const char* text, _Out_ char** brushStart);
+DLL int _MF_CountEntities(_In_ const char* text);
 
 /**
  * Starts parsing out an entity (brush or detail object entity). Branches based on the
@@ -76,12 +74,12 @@ DLL int _MF_CountEntities(_In_ const char* text, _Out_ char** brushStart);
  *						MF_PARSE_OK means success, all others mean failure.
  */
 _Success_(return == MF_LOAD_OK)
-DLL MF_ParseStatus _MF_StartParseGeneralEntity(_In_ const char* text, _Out_ MF_Entity* entity, _Out_ char** endEntity);
+DLL MF_ParseStatus _MF_StartParseGeneralEntity(_In_ const char* text, _In_ MF_Entity* entity, _Out_ char** endEntity);
 
 /**
- * Counts the total number of brushes within the "worldspawn" entity.
+ * Counts the total number of brushes within a brush entity.
  * 
- * @param[in]	text	A pointer to the opening bracket of the worldspawn entity definition
+ * @param[in]	text	A pointer to the opening bracket of the brush entity definition
  * 
  * @return				The total number of brushes ( >0 ) on success, -1 on failure.
  */
@@ -100,7 +98,7 @@ DLL int _MF_CountBrushes(_In_ const char* text);
  *						MF_PARSE_OK on success, all others on failure.
  */
 _Success_(return == MF_PARSE_OK)
-DLL MF_ParseStatus _MF_StartParseEntity(_In_ const char* text, _Out_ MF_Entity* entity, _Out_ char** endEntity);
+DLL MF_ParseStatus _MF_StartParseEntity(_In_ const char* text, _In_ MF_Entity* entity, _Out_ char** endEntity);
 
 /**
  * Starts parsing a brush entity
@@ -114,7 +112,7 @@ DLL MF_ParseStatus _MF_StartParseEntity(_In_ const char* text, _Out_ MF_Entity* 
  *						MF_PARSE_OK on success, all others on failure.
  */
 _Success_(return == MF_PARSE_OK)
-DLL MF_ParseStatus _MF_StartParseBrush(_In_ const char* text, _Out_ MF_Entity* entity, _Out_ char** endEntity);
+DLL MF_ParseStatus _MF_StartParseBrush(_In_ const char* text, _In_ MF_Entity* entity, _Out_ char** endEntity);
 
 /**
  * Counts the total number of properties in an entity for pre-allocating the memory
@@ -127,6 +125,18 @@ DLL MF_ParseStatus _MF_StartParseBrush(_In_ const char* text, _Out_ MF_Entity* e
  */
 _Success_(return > 0)
 DLL int _MF_CountProperties(_In_ const char* text);
+
+/**
+ * Starts parsing all the properties of an entity, setting them on the provided entity itself.
+ * 
+ * @param[in]	text	A pointer to the opening bracket of the entity definition
+ * @param[in]	entity	A pointer to the entity which will contain the new properties
+ * 
+ * @return				An enum representing the completion status of the operation.
+ *						MF_PARSE_OK on success, all others on failure
+ */
+_Success_(return == MF_PARSE_OK)
+DLL MF_ParseStatus _MF_ParseAllEntityProperties(_In_ const char* text, _In_ MF_Entity* entity);
 
 /**
  * Parses a property out of an entity definition

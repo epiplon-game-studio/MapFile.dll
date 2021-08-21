@@ -1,9 +1,9 @@
 var _file_reading_8h =
 [
-    [ "MF_COUNT_ENTITIES_DANGLING_CLOSE_BRACKET", "_file_reading_8h.html#abd2efc338253ba4353be94a6222a509f", null ],
-    [ "MF_COUNT_ENTITIES_DANGLING_OPEN_BRACKET", "_file_reading_8h.html#a4871f15ee2754d8e96358487ae4d2e0b", null ],
-    [ "MF_COUNT_ENTITIES_NULL_BRUSHSTART", "_file_reading_8h.html#acd90c88299d5796acecb5a56385ea8a1", null ],
-    [ "MF_COUNT_ENTITIES_NULL_OR_EMPTY_TEXT", "_file_reading_8h.html#a9096e18785f32951d01c737cced9320a", null ],
+    [ "MF_COUNT_DANGLING_CLOSE_BRACKET", "_file_reading_8h.html#af85af1d1a10af56d9501cd9c4e807055", null ],
+    [ "MF_COUNT_DANGLING_OPEN_BRACKET", "_file_reading_8h.html#aa55e1d5024a54d37ad2b07c6f29feb87", null ],
+    [ "MF_COUNT_NULL_BRUSHSTART", "_file_reading_8h.html#af262dacd7628e84fbd338da8423bb119", null ],
+    [ "MF_COUNT_NULL_OR_EMPTY_TEXT", "_file_reading_8h.html#a51021391e787c6912591bb9d528d3d27", null ],
     [ "MF_LoadStatus", "_file_reading_8h.html#a39671675c7630ce9da5d4c074e080602", [
       [ "MF_LOAD_OK", "_file_reading_8h.html#a39671675c7630ce9da5d4c074e080602af46a54ac52be85bb47b727fde1a39f39", null ],
       [ "MF_LOAD_FILE_NOT_FOUND", "_file_reading_8h.html#a39671675c7630ce9da5d4c074e080602ac750a8abbd680ef8c803efdfc4a1de9e", null ],
@@ -19,8 +19,9 @@ var _file_reading_8h =
       [ "MF_PARSE_UNKNOWN_ERROR", "_file_reading_8h.html#ab3d85b89f431030f404bc5cc0cb00d5fa679456d4e4690d8fd653005668a17c3c", null ]
     ] ],
     [ "_MF_CountBrushes", "_file_reading_8h.html#ad8cf919e6e6e4334569d246d0f5983f3", null ],
-    [ "_MF_CountEntities", "_file_reading_8h.html#a79037aa71562a82c8d2105e09e5a5738", null ],
+    [ "_MF_CountEntities", "_file_reading_8h.html#ac2946c613b52382ee1eb69e4030e0654", null ],
     [ "_MF_CountProperties", "_file_reading_8h.html#a5038b09170669459e7d3c90beb74f1d3", null ],
+    [ "_MF_ParseAllEntityProperties", "_file_reading_8h.html#a432e0fbd8852f273088d8f8375609369", null ],
     [ "_MF_ReadFile", "_file_reading_8h.html#a46ca33dee24b05bac11c06ea76a290a0", null ],
     [ "_MF_StartParseBrush", "_file_reading_8h.html#ad26517c14d4dd9cccf2af193386f9435", null ],
     [ "_MF_StartParseEntity", "_file_reading_8h.html#ab00fec2e35204fc0b0860a72c5f0d19b", null ],

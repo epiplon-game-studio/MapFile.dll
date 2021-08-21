@@ -31,40 +31,30 @@ namespace MapFiledllTest
 		TEST_METHOD(MF_CountEntities_NULL_Data)
 		{
 			Assert::AreEqual(
-				MF_COUNT_ENTITIES_NULL_OR_EMPTY_TEXT,
-				_MF_CountEntities(NULL, NULL)
+				MF_COUNT_NULL_OR_EMPTY_TEXT,
+				_MF_CountEntities(NULL)
 			);
 		}
 
-		TEST_METHOD(MF_CountEntities_NULL_brushstart)
-		{
-			Assert::AreEqual(
-				MF_COUNT_ENTITIES_NULL_BRUSHSTART,
-				_MF_CountEntities("{}", NULL)
-			);
-		}
 
 		TEST_METHOD(MF_CountEntities_Dangling_Bracket)
 		{
-			char* brushStart;
 			Assert::AreEqual(
-				MF_COUNT_ENTITIES_DANGLING_OPEN_BRACKET,
-				_MF_CountEntities("{}\n{", &brushStart)
+				MF_COUNT_DANGLING_OPEN_BRACKET,
+				_MF_CountEntities("{}\n{")
 			);
 		}
 
 		TEST_METHOD(MF_CountEntities_Headless_Bracket)
 		{
-			char* brushStart;
 			Assert::AreEqual(
-				MF_COUNT_ENTITIES_DANGLING_CLOSE_BRACKET,
-				_MF_CountEntities("}\n}", &brushStart)
+				MF_COUNT_DANGLING_CLOSE_BRACKET,
+				_MF_CountEntities("}\n}")
 			);
 		}
 
 		TEST_METHOD(MF_CountEntities_Embedded_Brushes)
 		{
-			char* brushStart;
 			const char* text =	"//TestComment\n"
 								"{\n"
 								"\"classname\": \"worldspawn\"\n"
@@ -72,8 +62,7 @@ namespace MapFiledllTest
 								"}\n"
 								"{}\n"
 								"{}";
-			Assert::AreEqual(3, _MF_CountEntities(text, &brushStart));
-			Assert::AreEqual(text + 14, brushStart);
+			Assert::AreEqual(3, _MF_CountEntities(text));
 		}
 
 		// MF_ReadFile
@@ -140,6 +129,23 @@ namespace MapFiledllTest
 					
 			Assert::AreEqual(4, _MF_CountProperties(text));
 		}
+
+		TEST_METHOD(_MF_StartParseProperty_OK)
+		{
+			const char* text =	"{\n"
+								"\"classname\" \"info_player_start\"\n"
+								"\"name\" \"john\"\n"
+								"}";
+			MF_EntityProperty property;
+			char* end = NULL;
+			MF_ParseStatus status = _MF_StartParseProperty(text + 2, &property, &end);
+			Assert::AreEqual((int)status, (int)MF_PARSE_OK);
+
+			Assert::AreEqual(0, strcmp(property.key, "classname"));
+			Assert::AreEqual(0, strcmp(property.value, "info_player_start"));
+
+		}
+
 		TEST_METHOD(MF_ReadFile_OK)
 		{
 			char* data = NULL;
