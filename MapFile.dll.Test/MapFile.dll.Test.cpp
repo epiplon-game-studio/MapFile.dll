@@ -146,6 +146,26 @@ namespace MapFiledllTest
 
 		}
 
+		TEST_METHOD(_MF_ParseAllEntityProperties_OK)
+		{
+			const char* text = "{\n"
+				"\"classname\" \"info_player_start\"\n\n"
+				"\"name\" \"john\"\n"
+				"}";
+			MF_Entity entity;
+			MF_ParseStatus status = _MF_ParseAllEntityProperties(text, &entity);
+			Assert::AreEqual((int)status, (int)MF_PARSE_OK);
+
+			Assert::AreEqual(2, (int)entity.totalProperties);
+
+			Assert::AreEqual(0, strcmp(entity.properties[0].key, "classname"));
+			Assert::AreEqual(0, strcmp(entity.properties[0].value, "info_player_start"));
+
+
+			Assert::AreEqual(0, strcmp(entity.properties[1].key, "name"));
+			Assert::AreEqual(0, strcmp(entity.properties[1].value, "john"));
+		}
+
 		TEST_METHOD(MF_ReadFile_OK)
 		{
 			char* data = NULL;

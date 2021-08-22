@@ -4,6 +4,6 @@ var annotated_dup =
     [ "_MF_Brush", "struct___m_f___brush.html", "struct___m_f___brush" ],
     [ "_MF_Entity", "struct___m_f___entity.html", "struct___m_f___entity" ],
     [ "_MF_EntityProperty", "struct___m_f___entity_property.html", "struct___m_f___entity_property" ],
-    [ "_MF_Map", "struct___m_f___map.html", "struct___m_f___map" ],
-    [ "_MF_RawPlane", "struct___m_f___raw_plane.html", "struct___m_f___raw_plane" ]
+    [ "_MF_Face", "struct___m_f___face.html", "struct___m_f___face" ],
+    [ "_MF_Map", "struct___m_f___map.html", "struct___m_f___map" ]
 ];

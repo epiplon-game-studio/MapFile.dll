@@ -66,7 +66,7 @@ DLL int _MF_CountEntities(_In_ const char* text);
  * entity class
  * 
  * @param[in]	text		A pointer to the beginning bracket of the entity definition
- * @param[out]	entity		A pointer to a struct which will contain the entity information
+ * @param[in]	entity		A pointer to a struct which will contain the entity information
  * @param[out]	endEntity	A pointer to one character after the end bracket of the entity
  *							definition
  * 
@@ -77,20 +77,10 @@ _Success_(return == MF_LOAD_OK)
 DLL MF_ParseStatus _MF_StartParseGeneralEntity(_In_ const char* text, _In_ MF_Entity* entity, _Out_ char** endEntity);
 
 /**
- * Counts the total number of brushes within a brush entity.
- * 
- * @param[in]	text	A pointer to the opening bracket of the brush entity definition
- * 
- * @return				The total number of brushes ( >0 ) on success, -1 on failure.
- */
-_Success_(return > 0)
-DLL int _MF_CountBrushes(_In_ const char* text);
-
-/**
  * Starts parsing a detail object entity
  * 
  * @param[in]	text		A pointer to the opening bracket of the detail object definition
- * @param[out]	entity		A pointer to the entity struct which will contain the entity data
+ * @param[in]	entity		A pointer to the entity struct which will contain the entity data
  * @param[out]	endEntity	A pointer to one character after the ending bracket of the entity
  *							definition
  * 
@@ -101,10 +91,29 @@ _Success_(return == MF_PARSE_OK)
 DLL MF_ParseStatus _MF_StartParseEntity(_In_ const char* text, _In_ MF_Entity* entity, _Out_ char** endEntity);
 
 /**
+ * Counts the total number of brushes within a brush entity.
+ *
+ * @param[in]	text	A pointer to the opening bracket of the brush entity definition
+ *
+ * @return				The total number of brushes ( >=0 ) on success, negative on failure.
+ */
+_Success_(return >= 0)
+DLL int _MF_CountBrushes(_In_ const char* text);
+
+/**
+ * Starts parsing all the brushes of an entity, setting them on the provided entity itself.
+ *
+ * @param[in]	text	A pointer to the opening bracket of the entity definition
+ * @param[in]	entity	A pointer to the entity which will contain the brushes
+ */
+_Success_(return == MF_PARSE_OK)
+DLL MF_ParseStatus _MF_ParseAllEntityBrushes(_In_ const char* text, _In_ MF_Entity* entity);
+
+/**
  * Starts parsing a brush entity
  * 
  * @param[in]	text		A pointer to the opening bracket of the brush object definition
- * @param[out]	entity		A pointer to the entity struct which will contain the brush data
+ * @param[in]	brush		A pointer to the brush struct which will contain the brush data
  * @param[out]	endEntity	A pointer to one character after the ending bracket of the entity
  *							definition
  * 
@@ -112,7 +121,41 @@ DLL MF_ParseStatus _MF_StartParseEntity(_In_ const char* text, _In_ MF_Entity* e
  *						MF_PARSE_OK on success, all others on failure.
  */
 _Success_(return == MF_PARSE_OK)
-DLL MF_ParseStatus _MF_StartParseBrush(_In_ const char* text, _In_ MF_Entity* entity, _Out_ char** endEntity);
+DLL MF_ParseStatus _MF_StartParseBrush(_In_ const char* text, _In_ MF_Brush* brush, _Out_ char** endEntity);
+
+/**
+ * Counts the total number of faces in the brush
+ * 
+ * @param[in]	text		A pointer to the opening bracket of the brush definition (inner bracket)
+ * 
+ * @return					The total number of brushes
+ */
+_Success_(return > 0)
+DLL MF_ParseStatus _MF_CountFaces(_In_ const char* text);
+
+/**
+ * Parses all faces in a brush and places them in the provided brush
+ * 
+ * @param[in]	text		A pointer to the opening bracket of the brush definition (inner bracket)
+ * @param[in]	brush		A pointer to the brush which will contain the new faces
+ * 
+ * @return					An enum representing the completion status of the operation.
+ *							MF_PARSE_OK on success, all others on failure.
+ */
+_Success_(return == MF_PARSE_OK)
+DLL MF_ParseStatus _MF_ParseAllBrushFaces(_In_ const char* text, _In_ MF_Brush* brush);
+
+/**
+ * Parses a single face in a brush and places it in the provided brush pointer
+ * 
+ * @param[in]	text		A pointer to the opening parenthetical '(' of the face definition
+ * @param[in]	face		A pointer to the face struct which will contain the new data
+ * 
+ * @return					An enum representing the completion status of the operation.
+ *							MF_PARSE_OK on success, all others on failure.
+ */
+_Success_(return == MF_PARSE_OK)
+DLL MF_ParseStatus _MF_StartParseFace(_In_ const char* text, _In_ MF_Face* face, _Out_ char** end);
 
 /**
  * Counts the total number of properties in an entity for pre-allocating the memory
@@ -121,7 +164,7 @@ DLL MF_ParseStatus _MF_StartParseBrush(_In_ const char* text, _In_ MF_Entity* en
  * @param[in]	text	A pointer to the opening bracket of the entity definition
  * 
  * @return				The total number of properties in the entity definition
- *						( >0 ) on success, -1 on failure.
+ *						( >0 ) on success, negative on failure.
  */
 _Success_(return > 0)
 DLL int _MF_CountProperties(_In_ const char* text);

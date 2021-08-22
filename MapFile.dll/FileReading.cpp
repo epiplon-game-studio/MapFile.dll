@@ -24,14 +24,19 @@ MF_LoadStatus MF_LoadMap(_In_ char* mapPath, _Out_ MF_Map *map)
 	}
 
 	int totalEntities = _MF_CountEntities(data);
-
 	MF_Entity* entities = (MF_Entity*)HeapAlloc(
 		GetProcessHeap(),
 		HEAP_ZERO_MEMORY,
 		sizeof(MF_Entity) * totalEntities
 	);
-
-
+	int entityOffset = 0;
+	for (char* cursor = data; entityOffset != totalEntities; cursor++)
+	{
+		if (*cursor == '{')
+		{
+			_MF_StartParseGeneralEntity(cursor, entities + entityOffset++, &cursor);
+		}
+	}
 }
 
 _Success_(return > 0)
@@ -86,7 +91,7 @@ MF_ParseStatus _MF_StartParseGeneralEntity(_In_ const char* text, _In_ MF_Entity
 	}
 
 	MF_ParseStatus status = _MF_ParseAllEntityProperties(text, entity);
-
+	status = _MF_ParseAllEntityBrushes(text, entity);
 	/*
 	entity->totalBrushes = _MF_CountBrushes(text);
 	entity->brushes = (MF_Brush*)HeapAlloc(
@@ -257,6 +262,44 @@ int _MF_CountBrushes(_In_ const char* text)
 		return MF_COUNT_DANGLING_OPEN_BRACKET;
 	}
 	return total;
+}
+
+_Success_(return == MF_PARSE_OK)
+MF_ParseStatus _MF_ParseAllEntityBrushes(_In_ const char* text, _In_ MF_Entity* entity)
+{
+	if (text == NULL || *text == '\0' || entity == NULL)
+	{
+		return MF_PARSE_MEMORY_ERROR;
+	}
+	entity->totalBrushes = _MF_CountBrushes(text);
+	if (entity->totalBrushes == 0)
+	{
+		return MF_PARSE_OK;
+	}
+	entity->brushes = (MF_Brush*)HeapAlloc(
+		GetProcessHeap(),
+		HEAP_ZERO_MEMORY,
+		sizeof(MF_Brush) * entity->totalBrushes
+	);
+	if (entity->brushes == NULL)
+	{
+		return MF_PARSE_MEMORY_ERROR;
+	}
+
+	int brushOffset = 0;
+	for (char* cursor = (char*)text + 1; brushOffset < entity->totalBrushes; cursor++)
+	{
+		if (*cursor == '{')
+		{
+			_MF_StartParseBrush(cursor, entity->brushes + brushOffset++, &cursor);
+		}
+	}
+}
+
+_Success_(return == MF_PARSE_OK)
+MF_ParseStatus _MF_StartParseBrush(_In_ const char* text, _In_ MF_Brush * brush, _Out_ char** endEntity)
+{
+	return MF_PARSE_OK;
 }
 
 // VERY private helpers

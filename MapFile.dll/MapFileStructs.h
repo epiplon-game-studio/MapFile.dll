@@ -2,7 +2,7 @@
 
 #include "glm/glm.hpp"
 
-typedef struct _MF_RawPlane
+typedef struct _MF_Face
 {
 	glm::vec3 a;
 	glm::vec3 b;
@@ -16,11 +16,11 @@ typedef struct _MF_RawPlane
 	
 	float scaleX;
 	float scaleY;
-} MF_RawPlane;
+} MF_Face;
 
 typedef struct _MF_Brush
 {
-	MF_RawPlane* planes;
+	MF_Face* planes;
 } MF_Brush;
 
 typedef struct _MF_EntityProperty
