@@ -20,10 +20,10 @@ var _file_reading_8h =
     ] ],
     [ "_MF_CountBrushes", "_file_reading_8h.html#ad8cf919e6e6e4334569d246d0f5983f3", null ],
     [ "_MF_CountEntities", "_file_reading_8h.html#ac2946c613b52382ee1eb69e4030e0654", null ],
-    [ "_MF_CountFaces", "_file_reading_8h.html#a718c330c94e3af2ae300b4c1cd597721", null ],
+    [ "_MF_CountFaces", "_file_reading_8h.html#a0138ae060be4ae1146ad065137cad632", null ],
     [ "_MF_CountProperties", "_file_reading_8h.html#a5038b09170669459e7d3c90beb74f1d3", null ],
     [ "_MF_ParseAllBrushFaces", "_file_reading_8h.html#a00ef72a688b8224a2c9b96c696b67dd3", null ],
-    [ "_MF_ParseAllEntityBrushes", "_file_reading_8h.html#a5598176ac54f8b7ea4f12c8848ea4bca", null ],
+    [ "_MF_ParseAllEntityBrushes", "_file_reading_8h.html#a76d949fa8c2637a311847ec5d9daac77", null ],
     [ "_MF_ParseAllEntityProperties", "_file_reading_8h.html#a432e0fbd8852f273088d8f8375609369", null ],
     [ "_MF_ReadFile", "_file_reading_8h.html#a46ca33dee24b05bac11c06ea76a290a0", null ],
     [ "_MF_StartParseBrush", "_file_reading_8h.html#af1f63ae600088d5200e3337caadb0ce5", null ],
@@ -31,5 +31,7 @@ var _file_reading_8h =
     [ "_MF_StartParseFace", "_file_reading_8h.html#a8cd7aa1809fd4478e2dd65682fa03265", null ],
     [ "_MF_StartParseGeneralEntity", "_file_reading_8h.html#a4580e327be3f0c82d6ad7cac72d89ddf", null ],
     [ "_MF_StartParseProperty", "_file_reading_8h.html#a203a8e4609c967e19317456b7f5938ca", null ],
-    [ "MF_LoadMap", "_file_reading_8h.html#a615bcd8641e46a6af20a168e0ea45b2c", null ]
+    [ "MF_LoadMap", "_file_reading_8h.html#a615bcd8641e46a6af20a168e0ea45b2c", null ],
+    [ "_MF_FaceRegex", "_file_reading_8h.html#ae59b6b4a7ab703532364bd9bd91a3fd0", null ],
+    [ "_MF_FaceTextureRegex", "_file_reading_8h.html#aa9ca3984057df180262f1d5a9797b82e", null ]
 ];

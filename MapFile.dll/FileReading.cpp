@@ -2,6 +2,11 @@
 
 #include "winbase.h"
 
+#include <iostream>
+
+std::regex _MF_FaceRegex("(?:\\(\\s*((?:-)?(?:[0-9]+)(?:\\.[0-9]+)?)\\s+((?:-)?(?:[0-9]+)(?:\\.[0-9]+)?)\\s+((?:-)?(?:[0-9]+)(?:\\.[0-9]+)?)\\s*\\)\\s*)");
+std::regex _MF_FaceTextureRegex("([^\\s]+)\\s((?:-)?(?:[0-9]+)(?:\\.[0-9]+)?)\\s((?:-)?(?:[0-9]+)(?:\\.[0-9]+)?)\\s((?:-)?(?:[0-9]+)(?:\\.[0-9]+)?)\\s((?:-)?(?:[0-9]+)(?:\\.[0-9]+)?)\\s((?:-)?(?:[0-9]+)(?:\\.[0-9]+)?)");
+
 _Success_(return == MF_LOAD_OK)
 MF_LoadStatus MF_LoadMap(_In_ char* mapPath, _Out_ MF_Map *map)
 {
@@ -23,20 +28,27 @@ MF_LoadStatus MF_LoadMap(_In_ char* mapPath, _Out_ MF_Map *map)
 		return status;
 	}
 
-	int totalEntities = _MF_CountEntities(data);
-	MF_Entity* entities = (MF_Entity*)HeapAlloc(
+	map->totalEntities = _MF_CountEntities(data);
+	map->entities = (MF_Entity*)HeapAlloc(
 		GetProcessHeap(),
 		HEAP_ZERO_MEMORY,
-		sizeof(MF_Entity) * totalEntities
+		sizeof(MF_Entity) * map->totalEntities
 	);
 	int entityOffset = 0;
-	for (char* cursor = data; entityOffset != totalEntities; cursor++)
+	for (char* cursor = data; entityOffset != map->totalEntities; cursor++)
 	{
 		if (*cursor == '{')
 		{
-			_MF_StartParseGeneralEntity(cursor, entities + entityOffset++, &cursor);
+			MF_ParseStatus status = _MF_StartParseGeneralEntity(cursor, map->entities + entityOffset++, &cursor);
+			switch (status)
+			{
+			case MF_PARSE_MEMORY_ERROR: return MF_LOAD_MEMORY_ERROR;
+			case MF_PARSE_SYNTAX_ERROR: return MF_LOAD_PARSE_ERROR;
+			default:					continue;
+			}
 		}
 	}
+	return MF_LOAD_OK;
 }
 
 _Success_(return > 0)
@@ -91,16 +103,12 @@ MF_ParseStatus _MF_StartParseGeneralEntity(_In_ const char* text, _In_ MF_Entity
 	}
 
 	MF_ParseStatus status = _MF_ParseAllEntityProperties(text, entity);
-	status = _MF_ParseAllEntityBrushes(text, entity);
-	/*
-	entity->totalBrushes = _MF_CountBrushes(text);
-	entity->brushes = (MF_Brush*)HeapAlloc(
-		GetProcessHeap(),
-		HEAP_ZERO_MEMORY,
-		sizeof(MF_Brush) * entity->totalBrushes
-	);*/
-	
-	return MF_PARSE_OK;
+	if (status != MF_PARSE_OK)
+	{
+		return status;
+	}
+	status = _MF_ParseAllEntityBrushes(text, entity, endEntity);
+	return status;
 }
 
 _Success_(return == MF_PARSE_OK)
@@ -265,7 +273,7 @@ int _MF_CountBrushes(_In_ const char* text)
 }
 
 _Success_(return == MF_PARSE_OK)
-MF_ParseStatus _MF_ParseAllEntityBrushes(_In_ const char* text, _In_ MF_Entity* entity)
+MF_ParseStatus _MF_ParseAllEntityBrushes(_In_ const char* text, _In_ MF_Entity* entity, _Out_ char** end)
 {
 	if (text == NULL || *text == '\0' || entity == NULL)
 	{
@@ -287,19 +295,138 @@ MF_ParseStatus _MF_ParseAllEntityBrushes(_In_ const char* text, _In_ MF_Entity* 
 	}
 
 	int brushOffset = 0;
-	for (char* cursor = (char*)text + 1; brushOffset < entity->totalBrushes; cursor++)
+	char* cursor = (char*)text + 1;
+	for (; brushOffset < entity->totalBrushes; cursor++)
 	{
 		if (*cursor == '{')
 		{
 			_MF_StartParseBrush(cursor, entity->brushes + brushOffset++, &cursor);
 		}
 	}
+	*end = cursor;
+	return MF_PARSE_OK;
 }
 
 _Success_(return == MF_PARSE_OK)
-MF_ParseStatus _MF_StartParseBrush(_In_ const char* text, _In_ MF_Brush * brush, _Out_ char** endEntity)
+MF_ParseStatus _MF_StartParseBrush(_In_ const char* text, _In_ MF_Brush* brush, _Out_ char** endEntity)
 {
+	brush->totalFaces = _MF_CountFaces(text);
+	if (brush->totalFaces < 1)
+	{
+		return MF_PARSE_SYNTAX_ERROR;
+	}
+	brush->faces = (MF_Face*)HeapAlloc(
+		GetProcessHeap(),
+		HEAP_ZERO_MEMORY,
+		sizeof(MF_Face) * brush->totalFaces
+	);
+	if (brush->faces == NULL)
+	{
+		return MF_PARSE_MEMORY_ERROR;
+	}
+
+	int faceOffset = 0;
+	bool inQuote = false;
+	char* c = (char*)text;
+	for(; faceOffset < brush->totalFaces && *c != '\0'; c++)
+	{
+		if (*c == '"')
+		{
+			inQuote ^= true;
+		}
+		if (*c == '(' && !inQuote)
+		{
+			_MF_StartParseFace(c, brush->faces + faceOffset++, &c);
+		}
+	}
+	*endEntity = c;
+
 	return MF_PARSE_OK;
+}
+
+_Success_(return == MF_PARSE_OK)
+MF_ParseStatus _MF_StartParseFace(_In_ const char* text, _In_ MF_Face* face, _Out_ char** end)
+{
+
+	char* c = (char*)text;
+	std::cmatch match;
+	int vertices = 0;
+	
+	while (std::regex_search((const char*)c, match, _MF_FaceRegex) && vertices < 3)
+	{
+		std::cout << match[0] << std::endl;
+		c += match[0].length();
+		face->verts[vertices].x = atof(match[1].str().c_str());
+		face->verts[vertices].y = atof(match[2].str().c_str());
+		face->verts[vertices].z = atof(match[3].str().c_str());
+		vertices++;
+	}
+
+	if (std::regex_search((const char*)c, match, _MF_FaceTextureRegex) && match.size() == 7)
+	{
+		face->textureName = (char*)HeapAlloc(
+			GetProcessHeap(),
+			HEAP_ZERO_MEMORY,
+			sizeof(char) * match[1].str().length()
+		);
+		if (face->textureName == NULL)
+		{
+			return MF_PARSE_MEMORY_ERROR;
+		}
+
+		CopyMemory(face->textureName, match[1].str().c_str(), match[1].str().length());
+
+		for (int i = 2; i < match.size(); i++)
+		{
+			face->texture.parameters[i - 2] = atof(match[i].str().c_str());
+		}
+	}
+	else
+	{
+		return MF_PARSE_SYNTAX_ERROR;
+	}
+
+	c += match[0].str().length();
+	*end = c;
+
+	return MF_PARSE_OK;
+}
+
+_Success_(return > 0)
+int _MF_CountFaces(_In_ const char* text)
+{
+	int totalFaces = 0;
+	int depth = 0;
+	bool newLine = true;
+	for (char* c = (char*)text + 1; *c != '\0'; c++)
+	{
+		if (*c == '{')
+		{
+			depth++;
+		}
+		else if (*c == '}')
+		{
+			depth--;
+			if (depth == -1)
+			{
+				break;
+			}
+		}
+		else if (depth == 0 && *c == '(' && newLine)
+		{
+			totalFaces++;
+			newLine = false;
+		}
+		else if (*c == '\n')
+		{
+			newLine = true;
+		}
+	}
+	if (depth > 1)
+	{
+		return MF_COUNT_DANGLING_OPEN_BRACKET;
+	}
+	return totalFaces;
 }
 
 // VERY private helpers
@@ -338,6 +465,7 @@ MF_LoadStatus _MF_ReadFile(_In_ char* mapPath, _Out_ char** data, _Out_ size_t* 
 		switch (GetLastError())
 		{
 		case ERROR_FILE_NOT_FOUND:
+		case ERROR_PATH_NOT_FOUND:
 		{
 			return MF_LOAD_FILE_NOT_FOUND;
 		}

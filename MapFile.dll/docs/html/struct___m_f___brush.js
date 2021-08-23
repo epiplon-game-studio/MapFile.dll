@@ -1,4 +1,5 @@
 var struct___m_f___brush =
 [
-    [ "planes", "struct___m_f___brush.html#a5388dee7eb3de75a0c8661896d47f0a0", null ]
+    [ "faces", "struct___m_f___brush.html#a83690dfe4b2c1681031e87ad95cbe0c3", null ],
+    [ "totalFaces", "struct___m_f___brush.html#a2f44f1c658deb6507bd083bdec15ee0b", null ]
 ];

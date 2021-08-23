@@ -6,6 +6,10 @@
 #pragma once
 #include "framework.h"
 #include "MapFileStructs.h"
+#include <regex>
+
+DLL extern std::regex _MF_FaceRegex;
+DLL extern std::regex _MF_FaceTextureRegex;
 
 // #defined magic numbers for count functions
 #define MF_COUNT_NULL_OR_EMPTY_TEXT (-1)
@@ -107,7 +111,7 @@ DLL int _MF_CountBrushes(_In_ const char* text);
  * @param[in]	entity	A pointer to the entity which will contain the brushes
  */
 _Success_(return == MF_PARSE_OK)
-DLL MF_ParseStatus _MF_ParseAllEntityBrushes(_In_ const char* text, _In_ MF_Entity* entity);
+DLL MF_ParseStatus _MF_ParseAllEntityBrushes(_In_ const char* text, _In_ MF_Entity* entity, _Out_ char** end);
 
 /**
  * Starts parsing a brush entity
@@ -131,7 +135,7 @@ DLL MF_ParseStatus _MF_StartParseBrush(_In_ const char* text, _In_ MF_Brush* bru
  * @return					The total number of brushes
  */
 _Success_(return > 0)
-DLL MF_ParseStatus _MF_CountFaces(_In_ const char* text);
+DLL int _MF_CountFaces(_In_ const char* text);
 
 /**
  * Parses all faces in a brush and places them in the provided brush

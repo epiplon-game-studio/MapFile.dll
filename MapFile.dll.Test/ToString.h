@@ -25,3 +25,18 @@ static std::wstring Microsoft::VisualStudio::CppUnitTestFramework::ToString<MF_L
 		return L"MF_UNKNOWN_LOAD_STATUS";
 	}
 }
+
+// MF_ParseStatus
+
+template<>
+static std::wstring Microsoft::VisualStudio::CppUnitTestFramework::ToString<MF_ParseStatus>(const MF_ParseStatus& status)
+{
+	switch (status)
+	{
+	case MF_PARSE_OK:				return L"MF_PARSE_OK";
+	case MF_PARSE_SYNTAX_ERROR:		return L"MF_PARSE_SYNTAX_ERROR";
+	case MF_PARSE_MEMORY_ERROR:		return L"MF_PARSE_MEMORY_ERROR";
+	case MF_PARSE_UNKNOWN_ERROR:	return L"MF_PARSE_UNKNOWN_ERROR";
+	default:						return L"MF_PARSE_UNDEFINED_ERROR";
+	}
+}

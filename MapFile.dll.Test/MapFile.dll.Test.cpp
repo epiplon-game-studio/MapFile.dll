@@ -27,6 +27,109 @@ namespace MapFiledllTest
 			Assert::AreEqual(MF_LOAD_MEMORY_ERROR, MF_LoadMap("Sample\\Empty.map", NULL));
 		}*/
 
+
+
+		TEST_METHOD(_MF_ParseAllEntityBrushes_OK)
+		{
+			const char* text =	"{\n"
+								"\"classname\" \"worldspawn\"\n"
+								"\"name\" \"John\"\n"
+								"{\n"
+								"( -80 112 32 ) ( -144 0 32 ) ( -144 0 0 ) grass001_1024 96 -32 0 1 1\n"
+								"( -144 0 32 ) ( 0 0 32 ) ( 0 0 0 ) grass001_1024 0 -32 0 1 1\n"
+								"(-144 0 0) (0 0 0) (-64 112 0) grass001_1024 0 -96 0 1 1\n"
+								"(-64 112 32) (0 0 32) (-144 0 32) grass001_1024 0 -96 0 1 1\n"
+								"(-64 112 0) (-64 112 32) (-80 112 32) grass001_1024 0 -32 0 1 1\n"
+								"(0 0 0) (0 0 32) (-64 112 32) grass001_1024 96 -32 0 1 1\n"
+								"}\n"
+								"{\n"
+								"(48 48 64) (48 64 16) (48 64 64) Wood_planks001_512 0 0 90 0.1 0.1\n"
+								"(144 48 64) (48 48 16) (48 48 64) Wood_planks001_512 0 0 90 0.1 0.1\n"
+								"(144 64 16) (48 48 16) (144 48 16) Wood_planks001_512 0 0 90 0.1 0.1\n"
+								"(144 64 64) (48 48 64) (48 64 64) Wood_planks001_512 0 0 90 0.1 0.1\n"
+								"(144 64 64) (48 64 16) (144 64 16) Wood_planks001_512 0 0 90 0.1 0.1\n"
+								"(144 64 64) (144 48 16) (144 48 64) Wood_planks001_512 0 0 90 0.1 0.1\n"
+								"}\n"
+								"}\n";
+			MF_Entity entity = { 0 };
+			char* end;
+			MF_ParseStatus status = _MF_ParseAllEntityBrushes(text, &entity, &end);
+			Assert::AreEqual(MF_PARSE_OK, status);
+
+			Assert::AreEqual(entity.totalBrushes, (size_t)2);
+			Assert::AreEqual(entity.brushes[1].faces[3].textureName, "Wood_planks001_512");
+			Assert::AreEqual(entity.brushes[1].faces[2].verts[2].y, 48.0f);
+		}
+		
+		TEST_METHOD(_MF_StartParseBrush_OK)
+		{
+			const char* text =	"{\n"
+								"\"classname\" \"worldspawn\"\n"
+								"\"name\" \"John\"\n"
+								"{\n"
+								"( -80 112 32 ) ( -144 0 32 ) ( -144 0 0 ) grass001_1024 96 -32 0 1 1\n"
+								"( -144 0 32 ) ( 0 0 32 ) ( 0 0 0 ) grass001_1024 0 -32 0 1 1\n"
+								"(-144 0 0) (0 0 0) (-64 112 0) grass001_1024 0 -96 0 1 1\n"
+								"(-64 112 32) (0 0 32) (-144 0 32) grass001_1024 0 -96 0 1 1\n"
+								"(-64 112 0) (-64 112 32) (-80 112 32) grass001_1024 0 -32 0 1 1\n"
+								"(0 0 0) (0 0 32) (-64 112 32) grass001_1024 96 -32 0 1 1\n"
+								"}\n"
+								"{\n"
+								"(48 48 64) (48 64 16) (48 64 64) Wood_planks001_512 0 0 90 0.1 0.1\n"
+								"(144 48 64) (48 48 16) (48 48 64) Wood_planks001_512 0 0 90 0.1 0.1\n"
+								"(144 64 16) (48 48 16) (144 48 16) Wood_planks001_512 0 0 90 0.1 0.1\n"
+								"(144 64 64) (48 48 64) (48 64 64) Wood_planks001_512 0 0 90 0.1 0.1\n"
+								"(144 64 64) (48 64 16) (144 64 16) Wood_planks001_512 0 0 90 0.1 0.1\n"
+								"(144 64 64) (144 48 16) (144 48 64) Wood_planks001_512 0 0 90 0.1 0.1\n"
+								"}\n"
+								"}\n";
+			MF_Brush brush = { 0 };
+			char* c;
+			MF_ParseStatus status = _MF_StartParseBrush(text, &brush, &c);
+			Assert::AreEqual(status, MF_PARSE_OK);
+
+			Assert::AreEqual((size_t)6, brush.totalFaces);
+			
+			// choose some random fields
+			Assert::AreEqual("grass001_1024", brush.faces[3].textureName);
+			Assert::AreEqual(-64.0f, brush.faces[2].verts[2].x);
+			Assert::AreEqual(112.0f, brush.faces[5].verts[2].y);
+		}
+
+		TEST_METHOD(_MF_StartParseFace_OK)
+		{
+			const char* text =	"( -80 112 32 ) ( -144 0 32 ) ( -144 0 0 ) grass001_1024 96 -32 0 1 1\n"
+								"( -144 0 32 ) ( 0 0 32 ) ( 0 0 0 ) grass001_1024 0 -32 0 1 1\n"
+								"(-144 0 0) (0 0 0) (-64 112 0) grass001_1024 0 - 96 0 1 1\n"
+								"(-64 112 32) (0 0 32) (-144 0 32) grass001_1024 0 - 96 0 1 1\n"
+								"(-64 112 0) (-64 112 32) (-80 112 32) grass001_1024 0 - 32 0 1 1\n"
+								"(0 0 0) (0 0 32) (-64 112 32) grass001_1024 96 - 32 0 1 1;\n";
+			MF_Face face;
+			char* end = NULL;
+			MF_ParseStatus status = _MF_StartParseFace(text, &face, &end);
+			Assert::AreEqual(MF_PARSE_OK, status);
+
+			Assert::AreEqual(-80.0f, face.verts[0].x);
+			Assert::AreEqual(112.0f, face.verts[0].y);
+			Assert::AreEqual(32.0f, face.verts[0].z);
+
+			Assert::AreEqual(-144.0f, face.verts[1].x);
+			Assert::AreEqual(0.0f, face.verts[1].y);
+			Assert::AreEqual(32.0f, face.verts[1].z);
+
+			Assert::AreEqual(-144.0f, face.verts[2].x);
+			Assert::AreEqual(0.0f, face.verts[2].y);
+			Assert::AreEqual(0.0f, face.verts[2].z);
+
+			Assert::AreEqual("grass001_1024", face.textureName);
+
+			Assert::AreEqual(96.0f, face.texture.offsetX);
+			Assert::AreEqual(-32.0f, face.texture.offsetY);
+			Assert::AreEqual(0.0f, face.texture.rotation);
+			Assert::AreEqual(1.0f, face.texture.scaleX);
+			Assert::AreEqual(1.0f, face.texture.scaleY);
+		}
+
 		/* MF_CountEntities */
 		TEST_METHOD(MF_CountEntities_NULL_Data)
 		{
@@ -166,22 +269,13 @@ namespace MapFiledllTest
 			Assert::AreEqual(0, strcmp(entity.properties[1].value, "john"));
 		}
 
-		TEST_METHOD(MF_ReadFile_OK)
+		/* This is the big one */
+		TEST_METHOD(MF_LoadMap_OK)
 		{
-			char* data = NULL;
-			size_t size = 0;
+			MF_Map map;
+			MF_LoadStatus status = MF_LoadMap("Sample/Test.map", &map);
+			Assert::AreEqual(MF_LOAD_OK, status);
 
-			Assert::AreEqual(
-				MF_LOAD_OK,
-				_MF_ReadFile(
-					"Sample/RandomData.map",
-					&data,
-					&size
-				)
-			);
-
-			Assert::AreEqual((size_t)12, size);
-			Assert::AreEqual(0, strcmp(data, "HELLO WORLD"));
 		}
 	};
 }

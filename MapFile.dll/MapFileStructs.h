@@ -2,25 +2,31 @@
 
 #include "glm/glm.hpp"
 
+typedef union _MF_FaceTextureParameters
+{
+	struct
+	{
+		float offsetX;
+		float offsetY;
+		float rotation;
+		float scaleX;
+		float scaleY;
+	};
+	float parameters[5];
+} MF_FaceTextureParameters;
+
 typedef struct _MF_Face
 {
-	glm::vec3 a;
-	glm::vec3 b;
-	glm::vec3 c;
-	
-	char* textureName;
-	float offsetX;
-	float offsetY;
+	glm::vec3 verts[3];
 
-	float rotation;
-	
-	float scaleX;
-	float scaleY;
+	char* textureName;
+	MF_FaceTextureParameters texture;
 } MF_Face;
 
 typedef struct _MF_Brush
 {
-	MF_Face* planes;
+	size_t totalFaces;
+	MF_Face* faces;
 } MF_Brush;
 
 typedef struct _MF_EntityProperty

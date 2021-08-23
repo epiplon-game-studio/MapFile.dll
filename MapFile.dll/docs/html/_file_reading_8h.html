@@ -88,13 +88,15 @@ $(document).ready(function(){initNavTree('_file_reading_8h.html',''); initResiza
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">FileReading.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;framework.h&quot;</code><br />
 <code>#include &quot;MapFileStructs.h&quot;</code><br />
+<code>#include &lt;regex&gt;</code><br />
 </div>
 <p><a href="_file_reading_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -145,12 +147,12 @@ Functions</h2></td></tr>
 <tr class="separator:ab00fec2e35204fc0b0860a72c5f0d19b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8cf919e6e6e4334569d246d0f5983f3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#ad8cf919e6e6e4334569d246d0f5983f3">_MF_CountBrushes</a> (const char *text)</td></tr>
 <tr class="separator:ad8cf919e6e6e4334569d246d0f5983f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5598176ac54f8b7ea4f12c8848ea4bca"><td class="memItemLeft" align="right" valign="top">MF_ParseStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#a5598176ac54f8b7ea4f12c8848ea4bca">_MF_ParseAllEntityBrushes</a> (const char *text, <a class="el" href="struct___m_f___entity.html">MF_Entity</a> *entity)</td></tr>
-<tr class="separator:a5598176ac54f8b7ea4f12c8848ea4bca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76d949fa8c2637a311847ec5d9daac77"><td class="memItemLeft" align="right" valign="top">MF_ParseStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#a76d949fa8c2637a311847ec5d9daac77">_MF_ParseAllEntityBrushes</a> (const char *text, <a class="el" href="struct___m_f___entity.html">MF_Entity</a> *entity, char **end)</td></tr>
+<tr class="separator:a76d949fa8c2637a311847ec5d9daac77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1f63ae600088d5200e3337caadb0ce5"><td class="memItemLeft" align="right" valign="top">MF_ParseStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#af1f63ae600088d5200e3337caadb0ce5">_MF_StartParseBrush</a> (const char *text, <a class="el" href="struct___m_f___brush.html">MF_Brush</a> *brush, char **endEntity)</td></tr>
 <tr class="separator:af1f63ae600088d5200e3337caadb0ce5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a718c330c94e3af2ae300b4c1cd597721"><td class="memItemLeft" align="right" valign="top">MF_ParseStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#a718c330c94e3af2ae300b4c1cd597721">_MF_CountFaces</a> (const char *text)</td></tr>
-<tr class="separator:a718c330c94e3af2ae300b4c1cd597721"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0138ae060be4ae1146ad065137cad632"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#a0138ae060be4ae1146ad065137cad632">_MF_CountFaces</a> (const char *text)</td></tr>
+<tr class="separator:a0138ae060be4ae1146ad065137cad632"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00ef72a688b8224a2c9b96c696b67dd3"><td class="memItemLeft" align="right" valign="top">MF_ParseStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#a00ef72a688b8224a2c9b96c696b67dd3">_MF_ParseAllBrushFaces</a> (const char *text, <a class="el" href="struct___m_f___brush.html">MF_Brush</a> *brush)</td></tr>
 <tr class="separator:a00ef72a688b8224a2c9b96c696b67dd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cd7aa1809fd4478e2dd65682fa03265"><td class="memItemLeft" align="right" valign="top">MF_ParseStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#a8cd7aa1809fd4478e2dd65682fa03265">_MF_StartParseFace</a> (const char *text, <a class="el" href="struct___m_f___face.html">MF_Face</a> *face, char **end)</td></tr>
@@ -163,6 +165,15 @@ Functions</h2></td></tr>
 <tr class="separator:a203a8e4609c967e19317456b7f5938ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46ca33dee24b05bac11c06ea76a290a0"><td class="memItemLeft" align="right" valign="top">MF_LoadStatus&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_file_reading_8h.html#a46ca33dee24b05bac11c06ea76a290a0">_MF_ReadFile</a> (char *mapPath, char **data, size_t *size)</td></tr>
 <tr class="separator:a46ca33dee24b05bac11c06ea76a290a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ae59b6b4a7ab703532364bd9bd91a3fd0"><td class="memItemLeft" align="right" valign="top"><a id="ae59b6b4a7ab703532364bd9bd91a3fd0"></a>
+std::regex&#160;</td><td class="memItemRight" valign="bottom"><b>_MF_FaceRegex</b></td></tr>
+<tr class="separator:ae59b6b4a7ab703532364bd9bd91a3fd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9ca3984057df180262f1d5a9797b82e"><td class="memItemLeft" align="right" valign="top"><a id="aa9ca3984057df180262f1d5a9797b82e"></a>
+std::regex&#160;</td><td class="memItemRight" valign="bottom"><b>_MF_FaceTextureRegex</b></td></tr>
+<tr class="separator:aa9ca3984057df180262f1d5a9797b82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>File reading and map parsing operations </p>
@@ -219,14 +230,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a718c330c94e3af2ae300b4c1cd597721"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a718c330c94e3af2ae300b4c1cd597721">&#9670;&nbsp;</a></span>_MF_CountFaces()</h2>
+<a id="a0138ae060be4ae1146ad065137cad632"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0138ae060be4ae1146ad065137cad632">&#9670;&nbsp;</a></span>_MF_CountFaces()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MF_ParseStatus _MF_CountFaces </td>
+          <td class="memname">int _MF_CountFaces </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>text</em></td><td>)</td>
@@ -308,8 +319,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5598176ac54f8b7ea4f12c8848ea4bca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5598176ac54f8b7ea4f12c8848ea4bca">&#9670;&nbsp;</a></span>_MF_ParseAllEntityBrushes()</h2>
+<a id="a76d949fa8c2637a311847ec5d9daac77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76d949fa8c2637a311847ec5d9daac77">&#9670;&nbsp;</a></span>_MF_ParseAllEntityBrushes()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -324,7 +335,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="struct___m_f___entity.html">MF_Entity</a> *&#160;</td>
-          <td class="paramname"><em>entity</em>&#160;</td>
+          <td class="paramname"><em>entity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
